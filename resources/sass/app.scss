@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+$primary: #52612E;
+$dark: #060D07;
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+body {
+    font-family: Nunito, sans-serif;
+}
+
+.icon {
+    width: 2rem;
+}
+
+.img-placeholder {
+	position: relative;
+}
+
+.img-placeholder::after {
+    content: attr(data-placeholder);
+    position: absolute;
+    display: var(--placeholder-display, flex);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: $light;
+    color: $secondary;
+    justify-content: center;
+    align-items: center;
+}
