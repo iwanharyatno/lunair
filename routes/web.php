@@ -50,4 +50,7 @@ Route::post('/admin/login', function(Request $request) {
     if (Illuminate\Support\Facades\Auth::attempt($request->only(['email', 'password']))) {
         return redirect()->intended('/admin');
     }
+    return back()->with('error', [
+        'message' => 'Invalid credentials'
+    ])->withInput();
 });
