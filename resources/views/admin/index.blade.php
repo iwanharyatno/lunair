@@ -128,7 +128,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
             document.getElementById('product-image').onchange = function() {
                 withFile = true;
             }
-	        imageForm.addEventListener('submit', function(e) {
+	        imageForm.onsubmit = function(e) {
 	            e.preventDefault();
 
                 const submitBtn = this.querySelector('button[type="submit"]');
@@ -176,6 +176,9 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
                                 else changeNode(data.product, JSON.parse(this.response).image);
                             } else {
                                 uploadInfoField.innerText = 'Upload failed (' + xhr.status + ')';
+                                submitBtn.removeAttribute('disabled');
+                                submitBtn.innerText = submitText;
+                                return;
                             }
     
                             productForm.reset();
@@ -196,7 +199,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
                         document.querySelector('#cancel-add').click();
                     }
                 });
-	        });
+	        };
         }
 
         function insertNewNode(productData, imageData) {
@@ -262,8 +265,11 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
         function changeNode(productData, imageData={}) {
             const cardBox = document.getElementById('product-' + productData.id);
 
+            const prevImgSrc = cardBox.querySelector('img').getAttribute('src');
+            const prevFields = JSON.parse(cardBox.querySelector('.edit-button').getAttribute('data-fields'));
+
             cardBox.querySelector('.img-placeholder', productData.name);
-            cardBox.querySelector('img').setAttribute('src', '/image/' + imageData.path || cardBox.querySelector('img').getAttribute('src'));
+            cardBox.querySelector('img').setAttribute('src', (imageData.path ? '/image/' + imageData.path : prevImgSrc));
             cardBox.querySelector('img').setAttribute('alt', decodeURIComponent(productData.name));
 
             cardBox.querySelector('.card-title').innerText = decodeURIComponent(productData.name);
@@ -276,8 +282,10 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
                 price: productData.price,
                 stock: productData.stock,
                 id: productData.id,
-                image_id: imageData.id || JSON.parse(cardBox.querySelector('.edit-button').getAttribute('data-fields')).image_id
+                image_id: (imageData.id ? imageData.id : prevFields.image_id)
             }));
+
+            console.log(cardBox.querySelector('.edit-button').getAttribute('data-fields'));
         }
 
         window.addEventListener('show.bs.modal', function(e) {
