@@ -100,7 +100,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
             @foreach ($products as $product)
                 <div class="card col-md-3 mx-md-3 mb-3 py-2" id="product-{{ $product->id }}">
 	                <div class="img-placeholder w-75 m-auto my-3" data-placeholder="{{ $product->name }}">
-                        <img src="{{ route('image', ['path' => $product->image->path]) }}" class="card-img-top" alt="{{ $product->name }}">
+                        <img src="/image/{{ $product->image->path }}" class="card-img-top" alt="{{ $product->name }}">
 	                </div>
 		            <div class="card-body">
                         <h5 class="card-title">{{ urldecode($product->name) }}</h5>
