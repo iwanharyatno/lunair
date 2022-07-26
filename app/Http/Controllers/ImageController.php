@@ -9,27 +9,47 @@ use App\Models\Image;
 class ImageController extends Controller
 {
     public function store(Request $request) {
-        $storagePath = Storage::disk('google')->putFile('', $request->file('image'));;
-        $productId = $request->input('product-id');
-
-        $image = Image::create([
-            'path' => $storagePath,
-            'product_id' => $productId
-        ]);
+        if ($request->file('image')) {
+	        $storagePath = Storage::disk('google')->putFile('', $request->file('image'));;
+	        $productId = $request->input('product-id');
+	
+	        $image = Image::create([
+	            'path' => $storagePath,
+	            'product_id' => $productId
+	        ]);
+	
+	        return response()->json([
+	            'message' => 'Uploaded!',
+	            'image' => $image
+	        ]);
+        }
 
         return response()->json([
-            'message' => 'Uploaded!',
-            'image' => $image
+            'message' => 'No image',
+            'image' => []
         ]);
     }
 
-    public function update(Request $request, Image $image) {
-        $newStoragePath = Storage::disk('google')->putFile('', $request->file('image'));
+    public function update(Request $request, $id) {
+	    $newStoragePath = Storage::disk('google')->putFile('', $request->file('image'));	
+        $image = Image::find($id);
 
-        Storage::disk('google')->delete($image->path);
+        if ($image) {
+	        Storage::disk('google')->delete($image->path);
+	
+	        $image->path = $newStoragePath;
+	        $image->save();
 
-        $image->path = $newStoragePath;
-        $image->save();
+	        return response()->json([
+	            'message' => 'Updated!',
+	            'image' => $image
+	        ]);
+        }
+
+	    $image = Image::create([
+	        'path' => $newStoragePath,
+            'product_id' => $request->input('product-id')
+	    ]);
 
         return response()->json([
             'message' => 'Updated!',

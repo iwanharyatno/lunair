@@ -21,7 +21,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
     <div class="modal fade" tabindex="-1" id="add-image-modal" data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="/admin/upload-image" id="upload-image-form">
+                <form action="/admin/upload-image" id="upload-image-form" enctype="multipart/form-data" method="post">
 		            <div class="modal-header">
 		                <h5 class="modal-title">Add Image</h5>
 		                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -100,13 +100,13 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
             @foreach ($products as $product)
                 <div class="card col-md-3 mx-md-3 mb-3 py-2" id="product-{{ $product->id }}">
 	                <div class="img-placeholder w-75 m-auto my-3" data-placeholder="{{ $product->name }}">
-                        <img src="/image/{{ $product->image->path }}" class="card-img-top" alt="{{ $product->name }}">
+                        <img src="/image/{{ $product->image ? $product->image->path : '' }}" class="card-img-top" alt="{{ $product->name }}">
 	                </div>
 		            <div class="card-body">
                         <h5 class="card-title">{{ urldecode($product->name) }}</h5>
                         <h6 class="card-subtitle text-muted mb-2">Stock: {{ $product->stock }} | {{ numfmt_format_currency($fmt, $product->price, 'IDR') }}</h6>
                         <p class="card-text">{{ urldecode($product->description) }}</p>
-                        <button class="btn btn-primary edit-button" data-fields='{"name":"{{ $product->name }}","description":"{{ $product->description }}","price":{{ $product->price }},"stock":{{ $product->stock }},"id":"{{ $product->id }}","image_id":"{{ $product->image->id }}"}' data-mode="edit" data-bs-toggle="modal" data-bs-target="#add-product-modal">Edit</button>
+                        <button class="btn btn-primary edit-button" data-fields='{"name":"{{ $product->name }}","description":"{{ $product->description }}","price":{{ $product->price }},"stock":{{ $product->stock }},"id":"{{ $product->id }}","image_id":"{{ $product->image ? $product->image->id : -1 }}"}' data-mode="edit" data-bs-toggle="modal" data-bs-target="#add-product-modal">Edit</button>
                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-dialog" data-prod-id="{{ $product->id }}">Delete</button>
 		            </div>
 		        </div>
@@ -163,7 +163,6 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
     
                         xhr.upload.addEventListener('progress', function(e) {
                             const progress = Math.round((e.loaded / e.total) * 10000) / 100;
-                            console.log(progress);
                             if (progress == 100) {
                                 uploadInfoField.innerText = 'Finishing upload... (' + progress + '%)';
                             } else {
@@ -185,7 +184,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
                             submitBtn.removeAttribute('disabled');
                             submitBtn.innerText = submitText;
 
-                            document.getElementById('cancel-add').click();
+                            document.querySelector('#cancel-add').click();
                         });
     
                         xhr.send(imageData);
@@ -194,7 +193,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
                         submitBtn.innerText = submitText;
                         if (data) uploadInfoField.innerText = 'Saving done!';
                         if (update) changeNode(data.product);
-                        document.getElementById('cancel-add').click();
+                        document.querySelector('#cancel-add').click();
                     }
                 });
 	        });
@@ -264,7 +263,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
             const cardBox = document.getElementById('product-' + productData.id);
 
             cardBox.querySelector('.img-placeholder', productData.name);
-            cardBox.querySelector('img').setAttribute('src', imageData.public_path || cardBox.querySelector('img').getAttribute('src'));
+            cardBox.querySelector('img').setAttribute('src', '/image/' + imageData.path || cardBox.querySelector('img').getAttribute('src'));
             cardBox.querySelector('img').setAttribute('alt', decodeURIComponent(productData.name));
 
             cardBox.querySelector('.card-title').innerText = decodeURIComponent(productData.name);
@@ -295,7 +294,6 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
                             document.getElementById('product-' + productID).remove();
                             this.removeAttribute('disabled');
                             this.innerText = btnText;
-                            console.log(data);
                         }).catch(function(e) {
                             console.log('error', e);
                         });

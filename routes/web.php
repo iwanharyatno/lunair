@@ -41,7 +41,7 @@ Route::post('/admin/edit-product/{product}', [ProductController::class, 'update'
 Route::get('/admin/delete-product/{product}', [ProductController::class, 'destroy']);
 
 Route::post('/admin/upload-image', [ImageController::class, 'store']);
-Route::post('/admin/edit-image/{image}', [ImageController::class, 'update']);
+Route::post('/admin/edit-image/{id}', [ImageController::class, 'update']);
 
 Route::get('/admin/login', function() {
     return view('admin.login');
