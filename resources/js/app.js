@@ -14,6 +14,8 @@ window.checkImgPlaceholders = function() {
 		    });
 	    }
 	}
+
+    resizePlaceholders();
 }
 
 function resizePlaceholders() {
@@ -24,6 +26,5 @@ function resizePlaceholders() {
 }
 
 checkImgPlaceholders();
-resizePlaceholders();
 
 window.addEventListener('resize', resizePlaceholders);
