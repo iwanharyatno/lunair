@@ -95,7 +95,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        Storage::delete($product->image->storage_path);
+        Storage::disk('google')->delete($product->image->path);
 
         $product->delete();
 

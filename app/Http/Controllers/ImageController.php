@@ -9,13 +9,11 @@ use App\Models\Image;
 class ImageController extends Controller
 {
     public function store(Request $request) {
-        $storagePath = $request->file('image')->store('public');
-        $publicPath = 'storage/' . explode('/', $storagePath)[1];
+        $storagePath = Storage::disk('google')->putFile('', $request->file('image'));;
         $productId = $request->input('product-id');
 
         $image = Image::create([
-            'storage_path' => $storagePath,
-            'public_path' => $publicPath,
+            'path' => $storagePath,
             'product_id' => $productId
         ]);
 
@@ -26,13 +24,11 @@ class ImageController extends Controller
     }
 
     public function update(Request $request, Image $image) {
-        $newStoragePath = $request->file('image')->store('public');
-        $newPublicPath = 'storage/' . explode('/', $newStoragePath)[1];
+        $newStoragePath = Storage::disk('google')->putFile('', $request->file('image'));
 
-        Storage::delete($image->storage_path);
+        Storage::disk('google')->delete($image->path);
 
-        $image->storage_path = $newStoragePath;
-        $image->public_path = $newPublicPath;
+        $image->path = $newStoragePath;
         $image->save();
 
         return response()->json([

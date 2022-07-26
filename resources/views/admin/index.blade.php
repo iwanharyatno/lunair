@@ -100,7 +100,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
             @foreach ($products as $product)
                 <div class="card col-md-3 mx-md-3 mb-3 py-2" id="product-{{ $product->id }}">
 	                <div class="img-placeholder w-75 m-auto my-3" data-placeholder="{{ $product->name }}">
-                        <img src="{{ asset( $product->image->public_path ) }}" class="card-img-top" alt="{{ $product->name }}">
+                        <img src="{{ route('image', $product->image->path) }}" class="card-img-top" alt="{{ $product->name }}">
 	                </div>
 		            <div class="card-body">
                         <h5 class="card-title">{{ urldecode($product->name) }}</h5>
@@ -163,6 +163,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
     
                         xhr.upload.addEventListener('progress', function(e) {
                             const progress = Math.round((e.loaded / e.total) * 10000) / 100;
+                            console.log(progress);
                             if (progress == 100) {
                                 uploadInfoField.innerText = 'Finishing upload... (' + progress + '%)';
                             } else {
@@ -217,7 +218,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
             imgPlaceholder.setAttribute('data-placeholder', decodeURIComponent(productData.name));
 
             imgProduct.classList.add('card-img-top');
-            imgProduct.setAttribute('src', '/' + imageData.public_path);
+            imgProduct.setAttribute('src', '/image/' + imageData.path);
             imgProduct.setAttribute('alt', decodeURIComponent(productData.name));
 
             cardBody.classList.add('card-body');
@@ -294,6 +295,9 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
                             document.getElementById('product-' + productID).remove();
                             this.removeAttribute('disabled');
                             this.innerText = btnText;
+                            console.log(data);
+                        }).catch(function(e) {
+                            console.log('error', e);
                         });
                 }
             }
