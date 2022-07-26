@@ -188,6 +188,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
                             submitBtn.innerText = submitText;
 
                             document.querySelector('#cancel-add').click();
+                            reset();
                         });
     
                         xhr.send(imageData);
@@ -197,6 +198,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
                         if (data) uploadInfoField.innerText = 'Saving done!';
                         if (update) changeNode(data.product);
                         document.querySelector('#cancel-add').click();
+                        reset();
                     }
                 });
 	        };
@@ -286,6 +288,12 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
             }));
 
             console.log(cardBox.querySelector('.edit-button').getAttribute('data-fields'));
+        }
+
+        function reset() {
+            productForm.reset();
+            imageForm.reset();
+            document.getElementById('upload-info').innerText = '';
         }
 
         window.addEventListener('show.bs.modal', function(e) {
