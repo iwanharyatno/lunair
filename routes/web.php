@@ -48,6 +48,7 @@ Route::get('/admin/login', function() {
 })->name('login');
 Route::post('/admin/login', function(Request $request) {
     if (Illuminate\Support\Facades\Auth::attempt($request->only(['email', 'password']))) {
+        $request->session()->regenerate();
         return redirect()->intended('/admin');
     }
     return back()->with('error', [
