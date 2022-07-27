@@ -24,7 +24,11 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" name="password" id="password" value="{{ old('password') }}" required>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Login</button>
+            <div classc"form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="remember" id="remember">
+                <label for="remember" class="form-check-label">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">Login</button>
         </form>
     </main>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
