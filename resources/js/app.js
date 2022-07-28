@@ -21,7 +21,7 @@ window.checkImgPlaceholders = function() {
 function resizePlaceholders() {
 	for (const imgPlaceholder of imgPlaceholders) {
 	    const width = imgPlaceholder.offsetWidth;
-	    imgPlaceholder.style.height = width + 'px';
+	    imgPlaceholder.style.minHeight = width + 'px';
 	}
 }
 
