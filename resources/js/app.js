@@ -6,7 +6,7 @@ window.checkImgPlaceholders = function() {
     imgPlaceholders = document.querySelectorAll('.img-placeholder');
     
 	for (const imgPlaceholderImg of imgPlaceholdersImg) {
-	    if (imgPlaceholderImg.completed) {
+	    if (imgPlaceholderImg.complete) {
 		    imgPlaceholderImg.parentNode.style.setProperty('--placeholder-display', 'none');
 	    } else {
 		    imgPlaceholderImg.addEventListener('load', function() {

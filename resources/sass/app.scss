@@ -16,13 +16,8 @@ body {
 .img-placeholder {
 	position: relative;
 }
-.img-placeholder img {
-    position: relative;
-    z-index: 3;
-}
 
 .img-placeholder::after {
-    z-index: 2;
     content: attr(data-placeholder);
     position: absolute;
     display: var(--placeholder-display, flex);
