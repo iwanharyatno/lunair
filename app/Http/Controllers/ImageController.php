@@ -10,7 +10,7 @@ class ImageController extends Controller
 {
     public function store(Request $request) {
         if ($request->file('image')) {
-	        $storagePath = Storage::disk('google')->putFile('', $request->file('image'));;
+	        $storagePath = Storage::disk('google')->putFile('', $request->file('image'));
 	        $productId = $request->input('product-id');
 	
 	        $image = Image::create([

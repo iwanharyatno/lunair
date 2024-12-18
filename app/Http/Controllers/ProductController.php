@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Exception;
+use Illuminate\Database\Eloquent\JsonEncodingException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -102,5 +104,90 @@ class ProductController extends Controller
         return response()->json([
             'message' => 'Deleted successfully!'
         ]);
+    }
+
+    public function addToCart(Request $request, Product $product)
+    {
+        $cart = $request->cookie('my_cart');
+
+        try {
+            $cartArray = collect(json_decode($cart));
+        } catch (Exception $e) {
+            $cartArray = collect([]);
+        }
+
+        $exist = $cartArray->where('product_id', $product->id)->first();
+
+        if (!$exist) {
+            $cartArray->add([
+                'product_id' => $product->id,
+                'product_name' => $product->name,
+                'product_price' => $product->price,
+                'product_image' => $product->image ? $product->image->path : null,
+                'qty' => $request->qty,
+                'subtotal' => $product->price * $request->qty
+            ]);
+        } else {
+            $itemIndex = $cartArray->search(function ($item) use ($product) {
+                return $item->product_id == $product->id;
+            });
+            $cartArray = json_decode($cart);
+            $cartArray[$itemIndex]->qty += $request->qty;
+
+            $cartArray = collect($cartArray);
+        }
+
+        return redirect()->route('product.cart')->withCookie('my_cart', json_encode($cartArray), 60);
+    }
+
+    public function cartView(Request $request) {
+        $myCart = $request->cookie('my_cart');
+        $cart = collect([]);
+
+        if ($myCart) {
+            try {
+                $cart = collect(json_decode($myCart));
+            } catch (Exception $e) {
+                $cart = collect([]);
+            }
+        }
+
+        $total = $cart->sum('subtotal');
+
+        return view('cart', compact('cart', 'total'));
+    }
+
+    public function removeCart(Request $request, $productId) {
+        $myCart = $request->cookie('my_cart');
+        $cart = collect([]);
+
+        if ($myCart) {
+            try {
+                $cart = collect(json_decode($myCart));
+            } catch (Exception $e) {
+                $cart = collect([]);
+            }
+        }
+
+        $cart = $cart->whereNotIn('product_id', [$productId])->all();
+
+        return back()->withCookie('my_cart', json_encode($cart), 60);
+    }
+
+    public function checkout(Request $request) {
+        $myCart = $request->cookie('my_cart');
+        $cart = collect([]);
+
+        if ($myCart) {
+            try {
+                $cart = collect(json_decode($myCart));
+            } catch (Exception $e) {
+                $cart = collect([]);
+            }
+        }
+
+        $total = $cart->sum('subtotal');
+
+        return view('checkout', compact('cart', 'total'));
     }
 }
