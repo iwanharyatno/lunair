@@ -29,39 +29,44 @@
         <div class="container-fluid text-center p-5">
             @yield('header')
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img class="icon" src="/img/sitaara-icon.png" alt="Sitaara">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img class="icon me-2" src="/img/sitaara-icon.png" alt="Sitaara" style="height: 40px;"> LUNAIR
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/catalogue">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">Tentang Kami</a>
+                    </li>
+                   
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2 rounded-pill" type="search" placeholder="Cari produk..." aria-label="Search">
+                    <button class="btn btn-outline-primary rounded-pill" type="submit">Cari</button>
+                </form>
+                <a href="{{ route('product.cart') }}" class="btn btn-danger ms-3 rounded-pill">
+                    <i class="bi bi-cart"></i> Cart
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav w-100">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Beranda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/catalogue">Katalog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/about">Tentang</a>
-                        </li>
-						<li class="nav-item ms-auto">
-							<a href="{{ route('product.cart') }}" class="btn btn-primary">Cart</a>
-						</li>
-                    </ul>
-                </div>
             </div>
-        </nav>
+        </div>
+    </nav>
     </header>
     <main>
         @yield('content')
     </main>
     <footer class="bg-light p-3 text-center text-secondary">
-        <small>&copy; 2022 Sitaara</small>
+        <small>&copy; 2024 Lunair.</small>
     </footer>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="/js/bootstrap.min.js"></script>
