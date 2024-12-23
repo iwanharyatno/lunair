@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Exception;
 use Illuminate\Database\Eloquent\JsonEncodingException;
@@ -133,6 +135,7 @@ class ProductController extends Controller
             });
             $cartArray = json_decode($cart);
             $cartArray[$itemIndex]->qty += $request->qty;
+            $cartArray[$itemIndex]->subtotal = $cartArray[$itemIndex]->qty * $cartArray[$itemIndex]->product_price;
 
             $cartArray = collect($cartArray);
         }
@@ -189,5 +192,42 @@ class ProductController extends Controller
         $total = $cart->sum('subtotal');
 
         return view('checkout', compact('cart', 'total'));
+    }
+
+    public function order(Request $request) {
+        $myCart = $request->cookie('my_cart');
+        $cart = collect([]);
+
+        if ($myCart) {
+            try {
+                $cart = collect(json_decode($myCart));
+            } catch (Exception $e) {
+                $cart = collect([]);
+            }
+        } else {
+            return redirect()->route('product.cart');
+        }
+
+        $total = $cart->sum('subtotal');
+
+        $order = Order::create([
+            'total' => $total
+        ]);
+
+        $details = [];
+
+        foreach ($cart as $item) {
+            $details[] = [
+                'order_id' => $order->id,
+                'product_id' => $item->product_id,
+                'product_price' => $item->product_price,
+                'qty' => $item->qty,
+                'subtotal' => $item->subtotal
+            ];
+        }
+
+        OrderDetail::insert($details);
+
+        return back()->withCookie('my_cart', '', -1);
     }
 }

@@ -38,6 +38,7 @@ Route::get('/cart', [ProductController::class, 'cartView'])->name('product.cart'
 Route::post('/catalogue/{product}/cart', [ProductController::class, 'addToCart'])->name('product.store-cart');
 Route::delete('/catalogue/{product}/cart', [ProductController::class, 'removeCart'])->name('product.delete-cart');
 Route::get('/checkout', [ProductController::class, 'checkout'])->name('product.checkout');
+Route::post('/checkout', [ProductController::class, 'order'])->name('product.order');
 
 Route::get('/admin', [ProductController::class, 'index'])->middleware('auth');
 Route::post('/admin/add-product', [ProductController::class, 'store']);

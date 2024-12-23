@@ -8,7 +8,7 @@
 @section('content')
     <div class="container my-4">
         <h1 class="fs-5 mb-2 text-center">Checkout Pesanan</h1>
-        <form method="POST" class="card">
+        <form action="{{ route('product.order') }}" method="POST" class="card">
             @csrf
             <div class="card-body">
                 <div class="table-responsive">
@@ -23,7 +23,7 @@
                         @foreach ($cart as $item)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $item->product_name }}</td>
+                                <td>{{ urldecode($item->product_name) }}</td>
                                 <td>{{ numfmt_format_currency($fmt, $item->product_price, 'IDR') }}</td>
                                 <td>{{ $item->qty }}</td>
                                 <td>{{ numfmt_format_currency($fmt, $item->subtotal, 'IDR') }}</td>
