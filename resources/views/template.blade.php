@@ -22,45 +22,54 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+        }
+
+        body {
+            padding-top: 70px; /* Sesuaikan dengan tinggi navbar */
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <div class="container-fluid text-center p-5">
-            @yield('header')
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img class="icon me-2" src="/img/sitaara-icon.png" alt="Sitaara" style="height: 40px;"> LUNAIR
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/catalogue">Produk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">Tentang Kami</a>
-                    </li>
-                   
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2 rounded-pill" type="search" placeholder="Cari produk..." aria-label="Search">
-                    <button class="btn btn-outline-primary rounded-pill" type="submit">Cari</button>
-                </form>
-                <a href="{{ route('product.cart') }}" class="btn btn-danger ms-3 rounded-pill">
-                    <i class="bi bi-cart"></i> Cart
+        <nav class="navbar navbar-expand-lg navbar-light bg- shadow-sm" style="background-color:pink ;">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img class="icon me-2" src="/img/sitaara-icon.png" alt="Sitaara" style="height: 40px;"> ELYSEIA
                 </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-dark" id="navbarNav" >
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/catalogue">Produk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">Tentang Kami</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2 rounded-pill" type="search" placeholder="Cari produk..." aria-label="Search">
+                        <button class="btn btn-outline-primary rounded-pill" type="submit">Cari</button>
+                    </form>
+                    <a href="{{ route('product.cart') }}" class="btn btn-danger ms-3 rounded-pill">
+                        <i class="bi bi-cart"></i> Cart
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     </header>
     <main>
         @yield('content')
