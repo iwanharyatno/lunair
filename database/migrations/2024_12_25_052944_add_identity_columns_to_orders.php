@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->integer('total');
-            $table->enum('status', ['Pending', 'Lunas', 'Gagal'])->default('Pending');
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('full_name');
+            $table->string('phone');
+            $table->text('address');
         });
     }
 
@@ -28,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
     }
 };

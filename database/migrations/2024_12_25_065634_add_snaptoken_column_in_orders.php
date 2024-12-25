@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->integer('total');
-            $table->enum('status', ['Pending', 'Lunas', 'Gagal'])->default('Pending');
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('snap_token');
+            $table->bigInteger('midtrans_order_id');
         });
     }
 
@@ -28,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
     }
 };
