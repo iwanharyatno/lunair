@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
+use Midtrans\Config as MidtransConfig;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -51,5 +53,11 @@ class AppServiceProvider extends ServiceProvider
 
             return new \Illuminate\Filesystem\FilesystemAdapter($driver, $adapter);
         });
+
+        MidtransConfig::$serverKey = config('midtrans.serverKey');
+        MidtransConfig::$isProduction = false;
+        MidtransConfig::$isSanitized = true;
+        MidtransConfig::$is3ds = true;
+        MidtransConfig::$overrideNotifUrl = config('midtrans.notif_url');
     }
 }

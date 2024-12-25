@@ -9,7 +9,7 @@
     <div class="container p-4">
         <div class="my-4 d-flex gap-4 align-items-center">
             <p class="fw-bold">Total: {{ numfmt_format_currency($fmt, $total   , 'IDR') }}</p>
-            <a href="{{ route('product.checkout') }}" class="btn btn-primary">Checkout semua</a>
+            <a href="{{ route('product.checkout') }}" class="btn btn-primary">Checkout</a>
         </div>
         @forelse ($cart as $item)
             <div class="card col-md-3 mx-md-3 mb-3 py-2">
@@ -30,7 +30,6 @@
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-primary">Checkout</button>
                     </form>
                 </div>
             </div>

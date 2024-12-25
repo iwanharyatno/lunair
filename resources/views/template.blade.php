@@ -79,6 +79,7 @@
     </footer>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="/js/bootstrap.min.js"></script>
+    @stack('scripts')
 </body>
 
 </html>
