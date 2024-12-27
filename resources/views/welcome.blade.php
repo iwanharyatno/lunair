@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'SITAARA Official Website')
+@section('title', 'ELYSEIA Official Website')
 @section('header')
 
 @endsection

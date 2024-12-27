@@ -3,7 +3,7 @@
 @endphp
 @extends('template')
 
-@section('title', 'SITAARA | Keranjang Saya')
+@section('title', 'Elyseia | Keranjang Saya')
 
 @section('content')
     <div class="container p-4">
