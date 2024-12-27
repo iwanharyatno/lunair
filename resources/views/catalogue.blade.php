@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'SITAARA | Katalog Produk')
+@section('title', 'ELYSEIA | Katalog Produk')
 
 @php
     $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-12 text-center mb-4">
             <h2 class="fw-bold text-secondary">Temukan Gaya Terbaikmu</h2>
-            <p class="text-muted">Eksplorasi koleksi fashion wanita terbaru dari Sitaara</p>
+            <p class="text-muted">Eksplorasi koleksi fashion wanita terbaru dari Elyseia</p>
         </div>
     </div>
 

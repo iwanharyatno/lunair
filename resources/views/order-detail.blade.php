@@ -3,7 +3,7 @@
 @endphp
 @extends('template')
 
-@section('title', 'SITAARA | Detail Pesanan ' . $order->full_name)
+@section('title', 'Elyseia| Detail Pesanan ' . $order->full_name)
 
 @section('content')
     <div class="container my-4">

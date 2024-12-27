@@ -1,16 +1,16 @@
 @extends('template')
 
-@section('title', 'Tentang Sitaara')
+@section('title', 'Tentang Elyseia')
 @section('header')
     <h1 class="text-primary display-2">Tentang Kami</h1>
-    <p>Sitaara</p>
+    <p>ELYSEIA</p>
 @endsection
 
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center p-5">
             <article class="col-md-5" style="text-align: justify">
-                <h2 class="mb-3 text-center">SITAARA</h2>
+                <h2 class="mb-3 text-center">Elyseia</h2>
                 <p>Sitaara adalah sebuah usaha yang bergerak di bidang produksi camilan tradisional</p>
                 <p>
                     Kata <q>Sitaara</q> sendiri berasal dari bahasa Hindi yang berarti bintang.
