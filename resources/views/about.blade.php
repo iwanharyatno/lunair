@@ -11,10 +11,13 @@
         <div class="row justify-content-center p-5">
             <article class="col-md-5" style="text-align: justify">
                 <h2 class="mb-3 text-center">Elyseia</h2>
-                <p>Sitaara adalah sebuah usaha yang bergerak di bidang produksi camilan tradisional</p>
+                <p>Elysia adalah sebuah usaha yang bergerak di bidang e-commerce tas dan kerudung.
+                </p>
                 <p>
-                    Kata <q>Sitaara</q> sendiri berasal dari bahasa Hindi yang berarti bintang.
-                    Seperti halnya bintang yang memancarkan cahaya dari masa lalu, produk kami juga merupakan pancaran cahaya dari masa lalu yang bisa dinikmati sekarang.
+                Nama "Elysia" diambil dari kata "Elysium,"
+                 yang melambangkan tempat penuh keindahan dan kenyamanan. 
+                 Produk kami dirancang dengan cinta dan perhatian pada detail untuk memberikan kesan elegan
+                sekaligus fungsional kepada pelanggan.
                 </p>
             </article>
         </div>
@@ -22,24 +25,26 @@
             <article class="col-md-5" style="text-align: justify">
                 <h3 class="mb-3 text-center">Pembentukan</h3>
                 <p>
-                    Sitaara terbentuk untuk memenuhi tugas mapel Produk Kreatif dan Kewirausahaan SMK.
-                    Sekaligus sebagai sarana untuk kami berlatih berwirausaha dengan menyediakan jajanan tradisional di lingkungan sekitar kami.
+                Elysia dibentuk untuk memenuhi kebutuhan masyarakat akan tas dan kerudung berkualitas
+                 yang memadukan gaya modern dengan nilai-nilai tradisional. 
+                 Usaha ini berawal dari kolaborasi lima individu kreatif yang ingin menghadirkan produk fashion terbaik yang terjangkau dan ramah lingkungan.
+
                 </p>
-                <p>
-                    Kebetulan, salah satu anggota kelompok kami pada waktu itu sedang menjalankan usaha produksi Klepon di keluarganya, sehingga kami juga terinspirasi untuk menjalankan bisnis dengan ide <em>Produksi makanan tradisional</em>.
-                    Dan pada hari itu, tepatnya 20 Juli 2022, Sitaara Lahir.
-                </p>
+                
             </article>
             <article class="col-md-5" style="text-align: justify">
                 <h3 class="mb-3 text-center">Anggota</h3>
-                <p>Sitaara Group terdiri dari 5 orang anggota. Berikut rincian anggota dan tugas mereka masing-masing</p>
+                <p>Elysia Team terdiri dari lima anggota, dengan tugas dan tanggung jawab masing-masing:</p>
                 <div>
                     <ul>
-                        <li>Alya Ismahani Nur Amalina. Bagian pembuatan produk</li>
-                        <li>Rafi Maulana Putra. Bagian pembuatan produk</li>
-                        <li>Elsa Faiza Ristian. Bagian desain dan pengemasan produk</li>
-                        <li>Alif Nuur Aziizah. Bagian pengelolaan akun media sosial <a href="https://instagram.com/sitaara.id">Sitaara</a></li>
-                        <li>Iwan Haryatno. Bagian pengelolaan website Sitaara</li>
+                        <li>Arin Fronika Fariasih: Bagian desain produk dan inovasi.</li>
+                        <li>Iftinan Hanan Andiyahman: Bagian pengelolaan produk dan strategi pemasaran.
+                        </li>
+                        <li>Alya Zulfa Alifah: Bagian produksi dan kontrol kualitas.
+                        </li>
+                        <li>Fatin Alifia Qisti Arsilawati: Bagian pengemasan dan manajemen logistik.
+                            <li>Ruri Kaila Ramadanti: Bagian pengelolaan website dan media sosial .</li>
+                            <a href="https://instagram.com/sitaara.id">Elyseia</a></li>
                     </ul>
                 </div>
             </article>

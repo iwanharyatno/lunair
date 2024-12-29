@@ -80,6 +80,13 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
 	                        <label for="price" class="form-label">Price</label>
 	                        <input type="number" class="form-control" id="price" name="price" required>
 	                    </div>
+                        <div class="mb-3" id="product-list">
+                            <label value="">Pilih Kategori</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="hijab">Hijab</option>
+                                <option value="handbag">Handbag</option>
+                                </select>
+                        </div>
 	                    <div class="mb-3">
 	                        <label for="stock" class="form-label">Stock</label>
 	                        <input type="number" class="form-control" id="stock" name="stock" required>
@@ -205,90 +212,103 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
         }
 
         function insertNewNode(productData, imageData) {
-            const cardBox = document.createElement('div');
-            const imgPlaceholder = document.createElement('div');
-            const imgProduct = document.createElement('img');
-            const cardBody = document.createElement('div');
-            const cardTitle = document.createElement('h5');
-            const cardSubtitle = document.createElement('h6');
-            const cardText = document.createElement('p');
-            const editButton = document.createElement('button');
-            const deleteButton = document.createElement('button');
+    const cardBox = document.createElement('div');
+    const imgPlaceholder = document.createElement('div');
+    const imgProduct = document.createElement('img');
+    const cardBody = document.createElement('div');
+    const cardTitle = document.createElement('h5');
+    const cardSubtitle = document.createElement('h6');
+    const cardText = document.createElement('p');
+    const editButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
 
-            cardBox.classList.add('card', 'col-md-3', 'mx-md-3', 'mb-3', 'py-2');
-            cardBox.setAttribute('id', 'product-' + productData.id);
+    cardBox.classList.add('card', 'col-md-3', 'mx-md-3', 'mb-3', 'py-2');
+    cardBox.setAttribute('id', 'product-' + productData.id);
 
-            imgPlaceholder.classList.add('img-placeholder', 'w-75', 'm-auto', 'my-3');
-            imgPlaceholder.setAttribute('data-placeholder', decodeURIComponent(productData.name));
+    imgPlaceholder.classList.add('img-placeholder', 'w-75', 'm-auto', 'my-3');
+    imgPlaceholder.setAttribute('data-placeholder', decodeURIComponent(productData.name));
 
-            imgProduct.classList.add('card-img-top');
-            imgProduct.setAttribute('src', '/image/' + imageData.path);
-            imgProduct.setAttribute('alt', decodeURIComponent(productData.name));
+    imgProduct.classList.add('card-img-top');
+    imgProduct.setAttribute('src', '/image/' + imageData.path);
+    imgProduct.setAttribute('alt', decodeURIComponent(productData.name));
 
-            cardBody.classList.add('card-body');
+    cardBody.classList.add('card-body');
 
-            cardTitle.classList.add('card-title');
-            cardTitle.innerText = decodeURIComponent(productData.name);
+    cardTitle.classList.add('card-title');
+    cardTitle.innerText = decodeURIComponent(productData.name);
 
-            cardSubtitle.classList.add('card-subtitle', 'text-muted', 'mb-2');
-            cardSubtitle.innerText = 'Stock: ' + productData.stock + ' | ' + productData.price;
+    cardSubtitle.classList.add('card-subtitle', 'text-muted', 'mb-2');
+    cardSubtitle.innerText = 'Stock: ' + productData.stock + ' | ' + productData.price;
 
-            cardText.classList.add('card-text');
-            cardText.innerText = decodeURIComponent(productData.description);
+    cardText.classList.add('card-text');
+    cardText.innerText = decodeURIComponent(productData.description);
 
-            editButton.classList.add('btn', 'btn-primary');
-            editButton.setAttribute('data-bs-toggle', 'modal');
-            editButton.setAttribute('data-bs-target', '#add-product-modal');
-            editButton.setAttribute('data-mode', 'edit');
-            editButton.setAttribute('data-fields', JSON.stringify({
-                name: productData.name,
-                description: productData.description,
-                price: productData.price,
-                stock: productData.stock,
-                id: productData.id,
-                image_id: imageData.id
-            }));
-            editButton.innerText = 'Edit';
+    editButton.classList.add('btn', 'btn-primary');
+    editButton.setAttribute('data-bs-toggle', 'modal');
+    editButton.setAttribute('data-bs-target', '#add-product-modal');
+    editButton.setAttribute('data-mode', 'edit');
+    editButton.setAttribute('data-fields', JSON.stringify({
+        name: productData.name,
+        description: productData.description,
+        price: productData.price,
+        stock: productData.stock,
+        id: productData.id,
+        image_id: imageData.id
+    }));
+    editButton.innerText = 'Edit';
 
-            deleteButton.classList.add('btn', 'btn-danger');
-            deleteButton.setAttribute('data-bs-toggle', 'modal');
-            deleteButton.setAttribute('data-bs-target', '#delete-dialog');
-            deleteButton.setAttribute('data-prod-id', productData.id);
-            deleteButton.innerText = 'Delete';
+    deleteButton.classList.add('btn', 'btn-danger');
+    deleteButton.setAttribute('data-bs-toggle', 'modal');
+    deleteButton.setAttribute('data-bs-target', '#delete-dialog');
+    deleteButton.setAttribute('data-prod-id', productData.id);
+    deleteButton.innerText = 'Delete';
 
-            imgPlaceholder.appendChild(imgProduct);
-            cardBody.append(cardTitle, cardSubtitle, cardText, editButton, deleteButton);
-            cardBox.append(imgPlaceholder, cardBody);
+    imgPlaceholder.appendChild(imgProduct);
+    cardBody.append(cardTitle, cardSubtitle, cardText, editButton, deleteButton);
+    cardBox.append(imgPlaceholder, cardBody);
 
-            document.getElementById('product-list').prepend(cardBox);
-            window.checkImgPlaceholders();
-        }
+    // Tentukan kategori
+    const category = productData.category.toLowerCase();
+    const categoryDiv = document.getElementById(category);
 
-        function changeNode(productData, imageData={}) {
-            const cardBox = document.getElementById('product-' + productData.id);
+    if (categoryDiv) {
+        categoryDiv.appendChild(cardBox);
+    } else {
+        console.warn(`Kategori "${productData.category}" tidak ditemukan!`);
+    }
+}
 
-            const prevImgSrc = cardBox.querySelector('img').getAttribute('src');
-            const prevFields = JSON.parse(cardBox.querySelector('.edit-button').getAttribute('data-fields'));
+function changeNode(productData, imageData = {}) {
+    const cardBox = document.getElementById('product-' + productData.id);
+    const currentCategory = cardBox.parentNode.id; // Ambil kategori saat ini
+    const newCategory = productData.category.toLowerCase(); // Kategori baru
 
-            cardBox.querySelector('.img-placeholder', productData.name);
-            cardBox.querySelector('img').setAttribute('src', (imageData.path ? '/image/' + imageData.path : prevImgSrc));
-            cardBox.querySelector('img').setAttribute('alt', decodeURIComponent(productData.name));
+    if (currentCategory !== newCategory) {
+        // Pindahkan elemen ke kategori baru
+        document.getElementById(newCategory).appendChild(cardBox);
+    }
 
-            cardBox.querySelector('.card-title').innerText = decodeURIComponent(productData.name);
-            cardBox.querySelector('.card-subtitle').innerText = 'Stock: ' + productData.stock + ' | ' + productData.price;
-            cardBox.querySelector('.card-text').innerText = decodeURIComponent(productData.description);
+    const prevImgSrc = cardBox.querySelector('img').getAttribute('src');
+    const prevFields = JSON.parse(cardBox.querySelector('.edit-button').getAttribute('data-fields'));
 
-            cardBox.querySelector('.edit-button').setAttribute('data-fields', JSON.stringify({
-                name: productData.name,
-                description: productData.description,
-                price: productData.price,
-                stock: productData.stock,
-                id: productData.id,
-                image_id: (imageData.id ? imageData.id : prevFields.image_id)
-            }));
+    cardBox.querySelector('img').setAttribute('src', imageData.path ? '/image/' + imageData.path : prevImgSrc);
+    cardBox.querySelector('img').setAttribute('alt', decodeURIComponent(productData.name));
 
-            console.log(cardBox.querySelector('.edit-button').getAttribute('data-fields'));
-        }
+    cardBox.querySelector('.card-title').innerText = decodeURIComponent(productData.name);
+    cardBox.querySelector('.card-subtitle').innerText = 'Stock: ' + productData.stock + ' | ' + productData.price;
+    cardBox.querySelector('.card-text').innerText = decodeURIComponent(productData.description);
+
+    cardBox.querySelector('.edit-button').setAttribute('data-fields', JSON.stringify({
+        name: productData.name,
+        description: productData.description,
+        price: productData.price,
+        stock: productData.stock,
+        id: productData.id,
+        image_id: imageData.id || prevFields.image_id,
+        category: productData.category
+    }));
+}
+
 
         function reset() {
             productForm.reset();
