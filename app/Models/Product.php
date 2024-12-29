@@ -14,7 +14,9 @@ class Product extends Model
         'description',
         'price',
         'stock',
-        'img_url'
+        'img_url',
+        'category'
+
     ];
 
     public function image() {

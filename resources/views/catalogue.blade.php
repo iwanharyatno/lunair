@@ -20,7 +20,7 @@
             <h3 class="fw-bold text-primary">Koleksi Hijab</h3>
         </div>
         <div class="row justify-content-evenly">
-            @foreach ($products as $product)
+            @foreach ($products->where('category', 'hijab') as $product)
                 <div class="card col-md-4 col-lg-3 m-3 p-0 shadow-sm" style="border-radius: 15px; overflow: hidden; background-color: #fff0f5;">
                     <div class="position-relative">
                         <img src="/image/{{ $product->image ? $product->image->path : 'default.jpg' }}" class="card-img-top" 
@@ -66,7 +66,7 @@
             <h3 class="fw-bold text-primary">Koleksi Handbag</h3>
         </div>
         <div class="row justify-content-evenly">
-            @foreach ($products as $product)
+            @foreach ($products->where('category', 'handbag') as $product)
                 <div class="card col-md-4 col-lg-3 m-3 p-0 shadow-sm" style="border-radius: 15px; overflow: hidden; background-color: #fff0f5;">
                     <div class="position-relative">
                         <img src="/image/{{ $product->image ? $product->image->path : 'default.jpg' }}" class="card-img-top" 
