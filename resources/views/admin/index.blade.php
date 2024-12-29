@@ -80,6 +80,13 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
 	                        <label for="price" class="form-label">Price</label>
 	                        <input type="number" class="form-control" id="price" name="price" required>
 	                    </div>
+                        <div class="mb-3">
+                            <label value="">Pilih Kategori</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="Hijab">Hijab</option>
+                                <option value="Handbag">Handbag</option>
+                                </select>
+                        </div>
 	                    <div class="mb-3">
 	                        <label for="stock" class="form-label">Stock</label>
 	                        <input type="number" class="form-control" id="stock" name="stock" required>

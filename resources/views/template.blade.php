@@ -75,7 +75,7 @@
         @yield('content')
     </main>
     <footer class="bg-light p-3 text-center text-secondary">
-        <small>&copy; 2024 Lunair.</small>
+        <small>&copy; 2024 Elyseia.</small>
     </footer>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="/js/bootstrap.min.js"></script>
