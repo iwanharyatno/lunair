@@ -22,7 +22,7 @@
         <div class="row align-items-center mb-5 bg-light py-4 px-3 rounded-4">
             <div class="col-md-6 order-md-2">
                 <h2 class="text-danger fw-bold">Hijab</h2>
-                <p class="fs-5">Klepon adalah makanan tradisional berbentuk bulatan hijau kecil, dengan taburan kelapa parut dan isian gula jawa cair yang manis. Produk ini menjadi maskot utama kami.</p>
+                <p class="fs-5">Hijab bukan hanya kewajiban, tetapi juga sebuah seni. Dengan padu padan yang tepat, hijab bisa menjadi fashion statement yang unik dan menarik. Produk hijab kami hadir dengan desain terbaru dan bahan berkualitas, sehingga Anda bisa tampil stylish dan tetap syari.</p>
                 <a href="/catalogue/#hijab" class="btn btn-outline-danger mt-3">Lihat Katalog</a>
             </div>
             <div class="col-md-6 text-center">
@@ -45,7 +45,7 @@
         <div class="row align-items-center mb-5 bg-light py-4 px-3 rounded-4">
             <div class="col-md-6 order-md-2">
                 <h2 class="text-danger fw-bold">Handbag</h2>
-                <p class="fs-5">Klepon adalah makanan tradisional berbentuk bulatan hijau kecil, dengan taburan kelapa parut dan isian gula jawa cair yang manis. Produk ini menjadi maskot utama kami.</p>
+                <p class="fs-5">Elegan dan fungsional, handbag kami adalah teman setia Anda dalam setiap kesempatan. Didesain dengan gaya terkini dan menggunakan bahan berkualitas tinggi, handbag ini tidak hanya mempercantik penampilan Anda, tetapi juga mampu menampung semua barang bawaan Anda dengan nyaman. Sempurna untuk wanita modern yang aktif."</p>
                 <a href="/catalogue/#handbag" class="btn btn-outline-danger mt-3">Lihat Katalog</a>
             </div>
             <div class="col-md-6 text-center">
