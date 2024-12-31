@@ -42,7 +42,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg- shadow-sm" style="background-color:pink ;">
             <div class="container">
                 <a class="navbar-brand" href="/">
-                    <img class="icon me-2" src="/img/sitaara-icon.png" alt="Sitaara" style="height: 40px;"> ELYSEIA
+                    <img class="icon me-2 rounded-circle shadow" src="/img/home/eleysia.jpg" alt="Sitaara" style="height: 40px;"> ELYSEIA
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

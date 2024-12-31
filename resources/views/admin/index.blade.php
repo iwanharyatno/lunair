@@ -13,7 +13,7 @@ $fmt = numfmt_create('id_ID', NumberFormatter::CURRENCY);
     <header>
 	    <nav class="navbar bg-dark navbar-dark">
 	        <div class="container-fluid d-flex justify-content-between">
-	            <a class="navbar-brand" href="/admin">Sitaara Admin</a>
+	            <a class="navbar-brand" href="/admin">Elyseia Admin</a>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-product-modal">New Data</button>
 	        </div>
 	    </nav>

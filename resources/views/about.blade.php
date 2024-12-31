@@ -44,7 +44,6 @@
                         </li>
                         <li>Fatin Alifia Qisti Arsilawati: Bagian pengemasan dan manajemen logistik.
                             <li>Ruri Kaila Ramadanti: Bagian pengelolaan website dan media sosial .</li>
-                            <a href="https://instagram.com/sitaara.id">Elyseia</a></li>
                     </ul>
                 </div>
             </article>
