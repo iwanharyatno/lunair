@@ -16,3 +16,4 @@ yarn-error.log
 /.vscode
 .vercel
 lunair.sql
+.codegpt

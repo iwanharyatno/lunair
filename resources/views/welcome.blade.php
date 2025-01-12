@@ -34,10 +34,12 @@
         <div class="row align-items-center mb-5">
             <div class="col-md-6">
                 <h2 class="text-danger fw-bold">Order lewat mana saja</h2>
-                <p class="fs-5">Anda dapat menghubungi kami melalui DM Instagram, WhatsApp, Email, atau langsung melalui website ini untuk memesan produk SITAARA.</p>
+                <p class="fs-5">Anda dapat menghubungi kami melalui DM Instagram, WhatsApp, Email, atau langsung melalui website ini untuk memesan produk ELYSEIA.</p>
             </div>
             <div class="col-md-6 text-center">
-                <img src="/img/home/order-options.png" alt="Cara Order" class="img-fluid rounded-circle shadow">
+                <a href="https://wa.me/+6287834440508">
+                    <img src="/img/home/icons8-whatsapp.svg" alt="Cara Order" class="img-fluid rounded-circle shadow" >
+                </a>
             </div>
         </div>
 
